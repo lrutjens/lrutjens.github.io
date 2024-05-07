@@ -26,6 +26,6 @@ Even simpler than the AND gate, the OR gate will just check if it has received e
 
 
 ## There are currently no designs for NOT gates
-If you've made one feel free to [fork this site](https://github.com/lrutjens/lrutjens.github.io), add your changes, and submit a pull request! If you need any help or have submitted a pull request, you dm me @angryfool on discord, send a message in [our thread](https://discord.com/channels/1197017602292207666/1234241641272049795/1234241641272049795) in the [Yeeps: Hide and Seek Discord](https://discord.com/invite/yeeps), or email [angryfool@duck.com](mailto:angryfool@duck.com).
+If you've made one feel free to [fork this site](https://github.com/lrutjens/lrutjens.github.io/tree/src), add your changes, and submit a pull request! If you need any help or have submitted a pull request, you dm me @angryfool on discord, send a message in [our thread](https://discord.com/channels/1197017602292207666/1234241641272049795/1234241641272049795) in the [Yeeps: Hide and Seek Discord](https://discord.com/invite/yeeps), or email [angryfool@duck.com](mailto:angryfool@duck.com).
 
 Combo gates will come soon aswell
