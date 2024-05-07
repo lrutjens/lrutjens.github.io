@@ -1,0 +1,38 @@
+site_name: Yeeps Engineering
+site_url: https://vzb759nc-8000.usw3.devtunnels.ms/
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.instant.prefetch
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - toc
+plugins:
+  - glightbox
+nav:
+  - Getting Started:
+    - index.md
+    - bomb-gates.md
+    - icicle-gates.md
+    - contributing.md
