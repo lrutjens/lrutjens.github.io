@@ -33,8 +33,19 @@ plugins:
 nav:
   - Getting Started:
     - index.md
-    - bomb-gates.md
-    - icicle-gates.md
-    - contributing.md
-    - yeessembly.md
-    - yeessembler.md
+    - Logic Gates: gates.md
+    - Interactables: interactables.md
+    - Traps: traps.md
+    - Triggers: triggers.md
+    - Wiring: wiring.md
+    - Yeessembly: yeessembly.md
+    - Yeessembler: yeessembler.md
+    - Legacy:
+      - Intro: legacy/index.md
+      - Bomb Gates: legacy/bomb-gates.md
+      - Icicle Gates: legacy/icicle-gates.md
+    - Contributing: contributing.md
+  - Yeessembly:
+    - Yeessembly: yeessembly.md
+    - Yeessembler: yeessembler.md
+    - Plain Yeessembler: extras/assembler.html
