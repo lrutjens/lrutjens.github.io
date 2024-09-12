@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <link rel = 'stylesheet' href = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+        <script>eruda.init();</script>
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    </head>
+
+    <body>
+        <div style="display: table; height: 10px; width: 100%; text-align: center; padding-top: 5%;">
+            <span style="display: table-cell; vertical-align: middle;">
+                <h1>Yeessembler</h1>
+            </span>
+        </div>
+        <script>
+            function auto_height(elem) {
+                elem.style.height = '1px';
+                elem.style.height = `${elem.scrollHeight}px`;
+            }
+        </script>
+        <div style="padding-left: 15%; padding-right: 15%; padding-top: 0%; padding-bottom: 5%;">
+            <textarea onloadstart="auto_height(this)" id='text_area_input' rows="1" class="auto_height" onInput="auto_height(this)" style="border: 1px solid black; border-spacing: 5%;"></textarea>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <button style="display: flex; margin-right: 2.5px;" id="assemble" py-click="assemble" type="submit" pys-onClick="assemble" class = "btn btn-primary">To Pinary</button>
+            <button style="display: flex; margin-right: 2.5px;" id="assemble_just_raw" py-click="assemble_just_raw" type="submit" pys-onClick="assemble_just_raw" class = "btn btn-primary">To Raw Yeessembly</button>
+        </div>
+        <div id="test-output" style="text-align: center; margin: 5%;">Loading...<br>If this doesn't load within the next minute, please refresh the page</div>
+        <py-script src='script.py'></py-script>
+  </body>
+</html>

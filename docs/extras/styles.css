@@ -1,0 +1,19 @@
+.auto_height { /* CSS */
+  width: 100%;
+}
+
+.center_vert_div {
+  display: table;
+  height: 25px;
+  width: 100%;
+  text-align: center;
+}
+.center_vert_span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.floated {
+  float:left;
+  margin-right:5px;
+}

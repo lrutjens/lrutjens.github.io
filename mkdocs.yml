@@ -1,4 +1,4 @@
-site_name: Yeeps Engineering
+site_name: Yeeps Redstone
 site_url: https://lrutjens.github.io
 theme:
   name: material
@@ -36,3 +36,5 @@ nav:
     - bomb-gates.md
     - icicle-gates.md
     - contributing.md
+    - yeessembly.md
+    - yeessembler.md
