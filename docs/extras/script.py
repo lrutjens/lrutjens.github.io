@@ -49,7 +49,7 @@ opcodes = {
 }
 
 codes = {
-    "CAHCE": "00",
+    "CACHE": "00",
     "ROM": "01",
     "RAM": "10",
     "DIS": "11"
@@ -58,7 +58,7 @@ codes = {
 arith_codes = {
     "ROM": "00",
     "RAM": "01",
-    "CAHCE": "10"
+    "CACHE": "10"
 }
 
 conditional_codes = {
@@ -199,8 +199,8 @@ def to_pinary():
                         pinary += (f'{opcodes[opcode]}{codes[line.split(" ")[1]]}{"0" if line.split(" ")[2] == "BEG" else "1"}00 {dec2bin(line.split(" ")[3], 16, line_num) if "LNx" not in line else line.split(" ")[3][:len(line.split(" ")[3])-1]} {dec2bin(0, 16, line_num)}\n')
                     case 'WR':
                         match line.split(" ")[1]:
-                            case "CAHCE" | "CLEAR":
-                                pinary += (f'{opcodes[opcode]}{"10" if line.split(" ")[1] == "CAHCE" else "11"}0{"0" if line.split(" ")[3] == "RAM" else "1"}{"0" if line.split(" ")[4] == "BEG" else "1"} {dec2bin(0, 16, line_num)} {dec2bin(line.split(" ")[5], 16, line_num)}\n')
+                            case "CACHE" | "CLEAR":
+                                pinary += (f'{opcodes[opcode]}{"10" if line.split(" ")[1] == "CACHE" else "11"}0{"0" if line.split(" ")[3] == "RAM" else "1"}{"0" if line.split(" ")[4] == "BEG" else "1"} {dec2bin(0, 16, line_num)} {dec2bin(line.split(" ")[5], 16, line_num)}\n')
                             case _:
                                 pinary += (f'{opcodes[opcode]}{arith_codes[line.split(" ")[1]]}{"0" if line.split(" ")[2] == "BEG" else "1"}{"0" if line.split(" ")[5] == "RAM" else "1"}{"0" if line.split(" ")[2] == "BEG" else "1"} {dec2bin(line.split(" ")[3], 16, line_num)} {dec2bin(line.split(" ")[7], 16, line_num)}\n')
                     case "BREAK":
