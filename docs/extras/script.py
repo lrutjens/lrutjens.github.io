@@ -132,7 +132,13 @@ def to_raw_yeessembly(text_input):
             if 'VAR' in line and '=' in line:
                 if line.split(" ")[1] not in variables.keys():
                     variables.update({line.split(" ")[1]: f'0x{len(variables.keys())}'})
-                raw_yeessembly += (f'WR ROM PNT 0x1 > RAM BEG {variables[line.split(" ")[1]]}\n{dec2bin(line.split(" ")[3], 16, line_num)} {dec2bin(0, 24, line_num)}\n')
+                if line.split(" ")[3] in opcodes.keys():
+                    full_str = ''
+                    for str_item in line.split(" ")[3:]:
+                        full_str += str_item + " "
+                    raw_yeessembly += f'{full_str}\nWR CACHE > RAM BEG {variables[line.split(" ")[1]]}\n'
+                else:
+                    raw_yeessembly += (f'WR ROM PNT 0x1 > RAM BEG {variables[line.split(" ")[1]]}\n{dec2bin(line.split(" ")[3], 16, line_num)} {dec2bin(0, 24, line_num)}\n')
                 was_var_dec = True
             elif "LNx" in line:
                 for i in range(3):
