@@ -24,10 +24,22 @@ theme:
     - navigation.tabs
     - navigation.top
     - navigation.indexes
+    - content.code.annotate
+    - content.tooltips
 markdown_extensions:
   - attr_list
   - md_in_html
   - toc
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - abbr
+  - attr_list
+  - pymdownx.snippets
 plugins:
   - glightbox
 nav:
@@ -38,7 +50,7 @@ nav:
     - Traps: traps.md
     - Triggers: triggers.md
     - Wiring: wiring.md
-    - Yeessembly: yeessembly.md
+    - Documentation: yeessembly.md
     - Yeessembler: yeessembler.md
     - Legacy:
       - Intro: legacy/index.md
@@ -46,6 +58,5 @@ nav:
       - Icicle Gates: legacy/icicle-gates.md
     - Contributing: contributing.md
   - Yeessembly:
-    - Yeessembly: yeessembly.md
+    - Documentation: yeessembly.md
     - Yeessembler: yeessembler.md
-    - Plain Yeessembler: extras/assembler.html
