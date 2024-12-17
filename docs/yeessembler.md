@@ -1,9 +1,6 @@
 <div class="md-container" style="padding: 16px;">
   <div class="md-input-wrapper" style="position: relative; margin-bottom: 20px;">
-    <textarea id="input" class="md-input md-input--code" 
-      placeholder="Enter Yeessembly Code Here"
-      style="resize: none; min-height: 120px; width: 100%; overflow: hidden; box-sizing: border-box;">
-    </textarea>
+    <textarea id="input"class="md-input md-input--code"placeholder="Enter Yeessembly Code Here"style="resize: none; min-height: 120px; width: 100%; overflow: hidden; box-sizing: border-box;"></textarea>
   </div>
   <button id="assemble-button" class="md-button md-button--primary md-button--raised" style="margin-bottom: 20px;">
     Assemble
