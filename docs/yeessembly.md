@@ -99,7 +99,7 @@ RAM Pointer: Moves to 0010 (2), 0011 (3)
 ### 4. Move RAM Pointer
 - **Opcode:** `1011`
 - **Behavior:**
-    - Pops the bottom value from the stack.
+    - Stack remains unchanged
     - Splits the value into two 4-bit parts:
         - First 4 bits → `x` coordinate.
         - Second 4 bits → `y` coordinate.
@@ -151,11 +151,12 @@ Stack After: [0000 0111 (7), ...]
 - **Behavior:**
     - Pops the bottom value from the stack.
     - Writes the value to the **current RAM pointer** location.
+    - If value is larger than 4 bits, value is split between **current and following** RAM cell
 
 ```text title="Example"
-Stack Before: [8, ...]
+Stack Before: [0001 0011 (19), ...]
 RAM Pointer: (2, 3)
-RAM After: (2, 3) → 8
+RAM After: (2, 3) → 0001 (1), (2, 4) → 0011 (3)
 ```
 
 ---

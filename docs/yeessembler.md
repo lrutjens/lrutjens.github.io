@@ -12,55 +12,86 @@
   </div>
 </div>
 <script>
-  const OPCODES = {
-    'ADD': '1000',
-    'SUB': '1001',
-    'SUBTRACT': '1001',
-    'IF': '1010',
-    'MOVE RAM': '1011',
-    'MOVE ROM': '1100',
-    'MOV RAM': '1011',
-    'MOV ROM': '1100',
-    'POP': '1101',
-    'READ': '1110',
-    'WRITE': '1111',
-    'WR': '1111',
-  };
-
   const inputArea = document.getElementById('input');
-  inputArea.addEventListener('input', () => {
-    inputArea.style.height = 'auto';
-    inputArea.style.height = inputArea.scrollHeight + 'px';
-  });
+  inputArea.style.height = inputArea.scrollHeight + 'px';
 
-  function assembleCode(assemblyCode) {
-    const lines = assemblyCode.split('\n');
-    const machineCode = [];
+  function initializeAssembler() {
+    const OPCODES = {
+      'ADD': '1000',
+      'SUB': '1001',
+      'SUBTRACT': '1001',
+      'IF': '1010',
+      'MOVE RAM': '1011',
+      'MOVE ROM': '1100',
+      'MOV RAM': '1011',
+      'MOV ROM': '1100',
+      'POP': '1101',
+      'READ': '1110',
+      'WRITE': '1111',
+      'WR': '1111',
+    };
 
-    for (let line of lines) {
-      line = line.trim();
-      if (!line || line.startsWith(';')) continue;
+    const inputArea = document.getElementById('input');
+    if (inputArea) {
+      inputArea.style.height = inputArea.scrollHeight + 'px';
+      inputArea.value = localStorage.getItem('assemblyCode') || '';
 
-      const parts = line.split(/\s+/);
-      const instruction = parts[0].toUpperCase();
+      inputArea.addEventListener('input', () => {
+        inputArea.style.height = 'auto';
+        inputArea.style.height = inputArea.scrollHeight + 'px';
 
-      if (OPCODES[instruction]) {
-        machineCode.push(OPCODES[instruction]);
-      } else if (/^\d{4}$/.test(instruction)) {
-        machineCode.push(instruction);
-      } else {
-        machineCode.push(`Error: Unknown instruction "${line}"`);
-      }
+        localStorage.setItem('assemblyCode', inputArea.value);
+      });
     }
-    return machineCode.join('\n');
+
+    const assembleButton = document.getElementById('assemble-button');
+    if (assembleButton) {
+      assembleButton.addEventListener('click', () => {
+        const assemblyCode = inputArea.value;
+        const machineCode = assembleCode(assemblyCode);
+        document.getElementById('output').innerText = machineCode;
+      });
+    }
+
+    function assembleCode(assemblyCode) {
+      const lines = assemblyCode.split('\n');
+      const machineCode = [];
+      for (let line of lines) {
+        line = line.trim();
+        if (!line || line.startsWith(';')) continue;
+
+        let instruction = '';
+        if (line.toUpperCase().startsWith('MOVE RAM')) {
+          instruction = 'MOVE RAM';
+        } else if (line.toUpperCase().startsWith('MOVE ROM')) {
+          instruction = 'MOVE ROM';
+        } else {
+          const parts = line.split(/\s+/);
+          instruction = parts[0].toUpperCase();
+        }
+
+        if (OPCODES[instruction]) {
+          machineCode.push(OPCODES[instruction]);
+        } else if (/^\d{4}$/.test(instruction)) {
+          machineCode.push(instruction);
+        } else {
+          machineCode.push(`Error: Unknown instruction "${line}"`);
+        }
+      }
+      return machineCode.join('\n');
+    }
   }
 
-  document.getElementById('assemble-button').addEventListener('click', () => {
-    const assemblyCode = document.getElementById('input').value;
-    const machineCode = assembleCode(assemblyCode);
-    document.getElementById('output').innerText = machineCode;
-  });
+  if (window.$docsify) {
+    window.$docsify.plugins = (window.$docsify.plugins || []).concat(() => {
+      window.addEventListener('navigation.start', initializeAssembler);
+    });
+  } else {
+    document.addEventListener('DOMContentLoaded', initializeAssembler);
+    document.addEventListener('DOMContentUpdated', initializeAssembler);
+  }
 </script>
+
 <style>
   textarea.md-input.md-input--code {
     font-family: monospace;
