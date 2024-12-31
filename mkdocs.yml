@@ -2,21 +2,21 @@ site_name: Yeeps Redstone
 site_url: https://lrutjens.github.io
 theme:
   name: material
+  logo: assets/logo-transparent.png
+  favicon: assets/logo.png
   palette:
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/brightness-auto
-        name: Switch to light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default 
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       toggle:
-        icon: material/brightness-4
-        name: Switch to system preference
+        icon: material/brightness-2
+        name: Dark Mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: custom
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Light Mode
   features:
     - navigation.tabs
     - navigation.top
@@ -47,8 +47,7 @@ nav:
     - Traps: traps.md
     - Triggers: triggers.md
     - Wiring: wiring.md
-    - Documentation: yeessembly.md
-    - Yeessembler: yeessembler.md
+    - Yessembly: yeessembly.md
     - Legacy:
       - Intro: legacy/index.md
       - Bomb Gates: legacy/bomb-gates.md
@@ -57,3 +56,11 @@ nav:
   - Yeessembly:
     - Documentation: yeessembly.md
     - Yeessembler: yeessembler.md
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/discord
+      link: https://google.com
+      name: Yeeps Redstone Discord
+extra_css:
+  - stylesheets/extra.css

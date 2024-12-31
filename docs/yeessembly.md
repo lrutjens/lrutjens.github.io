@@ -1,4 +1,4 @@
-###### Version 2.0
+###### Version 2.1
 
 # Yeessembly
 
@@ -7,7 +7,7 @@
 ### 1. RAM (Random Access Memory)
 - **Purpose:** Temporary storage for data that can be read from and written to during program execution.
 - **Addressing:** RAM uses a 2D coordinate system `(x, y)` instead of a single linear address.
-    - `x` and `y` are each 4 bits, providing a 16x16 grid (256 total addresses).
+    - `x` and `y` are each 2 bits, providing a 4x4 grid (16 total addresses).
 - **Data:** Each location in RAM stores 4 bits.
 
 ---
@@ -21,7 +21,7 @@
 
 ### 3. Stack
 - **Purpose:** A stack-based data structure used to store intermediate values for logic operations and control flow.
-- **Structure:** The stack is an array of bytes (8-bit values).
+- **Structure:** The stack is an array of 4 bits.
 - **Behavior:**
     - **Push Operation:** Adds a new value to the **bottom** of the stack, shifting all other values **up** by one position.
     - **Pop Operation:** Removes the value from the **bottom** of the stack, shifting all other values **down** by one position.
@@ -46,7 +46,7 @@
 | **Read**              | `1110`     | Reads the value at the RAM pointer and pushes it to the stack.                 |
 | **Write**             | `1111`     | Writes the bottom value in the stack to the RAM pointer location.              |
 
-- **Number Values:** Any 4-bit value **starting with `0`** is treated as a literal number and are pushed directly onto the stack wiith the following 4 bits as a single number.
+- **Number Values:** Any 4-bit value **starting with `0`** is treated as a literal number and are pushed directly onto the stack. As a workaround, you can push a second number to the stack and add them to utilize the full 4 bits
 
 ---
 
@@ -60,8 +60,8 @@
     - Pushes the result to the **bottom** of the stack.
 
 ``` text title="Example"
-Stack Before: [0000 0101 (5), 0000 0011 (3), ...]
-Stack After: [0000 0100 (8), ...]
+Stack Before: [0101 (5), 0011 (3), ...]
+Stack After: [0100 (8), ...]
 ```
 
 ---
@@ -75,8 +75,8 @@ Stack After: [0000 0100 (8), ...]
     - **Note:** This instruction does not support negative numbers. Results are clamped at 0.
 
 ```text title="Example"
-Stack Before: [0000 0101 (5), 0000 0011 (3), ...]
-Stack After: [0000 0010 (2), ...]
+Stack Before: [0101 (5), 0011 (3), ...]
+Stack After: [0010 (2), ...]
 ```
 
 ---
@@ -89,9 +89,9 @@ Stack After: [0000 0010 (2), ...]
     - Leaves all values on the stack intact.
 
 ``` text title="Example"
-Stack Before: [0000 0111 (7), 0000 0101 (5), 0010 (x=2) 0011 (y=3), ...]
+Stack Before: [0111 (7), 0101 (5), 10 (x=2) 11 (y=3), ...]
 Condition: 7 > 5 → True
-RAM Pointer: Moves to 0010 (2), 0011 (3)
+RAM Pointer: Moves to 10 (2), 11 (3)
 ```
 
 ---
@@ -106,8 +106,8 @@ RAM Pointer: Moves to 0010 (2), 0011 (3)
     - Moves the RAM pointer to `(x, y)`.
 
 ```text title="Example"
-Stack Before: [1101 (13) 0011 (3), ...]
-RAM Pointer: Moves to (1101, 0011) → (13, 3)
+Stack Before: [01 (1) 11 (3), ...]
+RAM Pointer: Moves to (01, 11) → (1, 3)
 ```
 
 ---
@@ -126,8 +126,8 @@ RAM Pointer: Moves to (1101, 0011) → (13, 3)
     - Shifts all other values **down** by one position.
 
 ```text title="Example"
-Stack Before: [0000 0101 (5), 0000 0011 (3), 0000 0010 (2), ...]
-Stack After: [0000 0011 (3), 0000 0010 (2), ...]
+Stack Before: [0101 (5), 0011 (3), 0010 (2), ...]
+Stack After: [0011 (3), 0010 (2), ...]
 ```
 
 ---
@@ -139,9 +139,9 @@ Stack After: [0000 0011 (3), 0000 0010 (2), ...]
     - Pushes the value to the **bottom** of the stack.
 
 ```text title="Example"
-RAM at (2, 3): 0000 0111 (7)
+RAM at (2, 3): 0111 (7)
 Stack Before: [...]
-Stack After: [0000 0111 (7), ...]
+Stack After: [0111 (7), ...]
 ```
 
 ---
@@ -151,12 +151,11 @@ Stack After: [0000 0111 (7), ...]
 - **Behavior:**
     - Pops the bottom value from the stack.
     - Writes the value to the **current RAM pointer** location.
-    - If value is larger than 4 bits, value is split between **current and following** RAM cell
 
 ```text title="Example"
-Stack Before: [0001 0011 (19), ...]
+Stack Before: [1001 (9), ...]
 RAM Pointer: (2, 3)
-RAM After: (2, 3) → 0001 (1), (2, 4) → 0011 (3)
+RAM After: (2, 3) → 1001 (9)
 ```
 
 ---

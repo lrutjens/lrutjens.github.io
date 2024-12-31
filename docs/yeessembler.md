@@ -12,9 +12,6 @@
   </div>
 </div>
 <script>
-  const inputArea = document.getElementById('input');
-  inputArea.style.height = inputArea.scrollHeight + 'px';
-
   function initializeAssembler() {
     const OPCODES = {
       'ADD': '1000',
@@ -33,15 +30,20 @@
 
     const inputArea = document.getElementById('input');
     if (inputArea) {
-      inputArea.style.height = inputArea.scrollHeight + 'px';
-      inputArea.value = localStorage.getItem('assemblyCode') || '';
-
-      inputArea.addEventListener('input', () => {
+      const resizeTextarea = () => {
         inputArea.style.height = 'auto';
         inputArea.style.height = inputArea.scrollHeight + 'px';
+      };
 
+      inputArea.value = localStorage.getItem('assemblyCode') || '';
+      resizeTextarea();
+
+      inputArea.addEventListener('input', () => {
+        resizeTextarea();
         localStorage.setItem('assemblyCode', inputArea.value);
       });
+
+      window.addEventListener('resize', resizeTextarea);
     }
 
     const assembleButton = document.getElementById('assemble-button');
@@ -91,6 +93,7 @@
     document.addEventListener('DOMContentUpdated', initializeAssembler);
   }
 </script>
+
 
 <style>
   textarea.md-input.md-input--code {
