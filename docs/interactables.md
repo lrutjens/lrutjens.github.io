@@ -1,3 +1,6 @@
 # Interactables
 
-## TODO: Basically most of the stuff from [here](triggers.md), plus stuff like keys etc. Basically anything the player can interact with
+## Big Button
+![big button](images/interactables/button_big.png)
+
+## TODO: finish this

@@ -24,6 +24,7 @@ theme:
     - content.code.annotate
     - content.tooltips
 markdown_extensions:
+  - pymdownx.blocks.caption
   - attr_list
   - md_in_html
   - toc
@@ -46,7 +47,6 @@ nav:
     - Interactables: interactables.md
     - Traps: traps.md
     - Triggers: triggers.md
-    - Wiring: wiring.md
     - Yessembly: yeessembly.md
     - Legacy:
       - Intro: legacy/index.md

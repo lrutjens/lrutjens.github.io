@@ -21,9 +21,8 @@ Icicles can trigger bombs, or other icicles from any distance by running into th
 
 ## Explosive Bombs
 Using yellow bombs we can chain them together to make wiring.
-Each bombs has a radius of 5, So looking at this diagram we can se how far a bomb may reach:
+Each bombs has a radius of 5.
 
-[ADD EXPLOSION RANGE IMAGE HERE]
 
 You can find explosion bomb gates [here](bomb-gates.md)
 
