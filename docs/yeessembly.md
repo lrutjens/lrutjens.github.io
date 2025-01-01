@@ -6,15 +6,16 @@
 
 ### 1. RAM (Random Access Memory)
 - **Purpose:** Temporary storage for data that can be read from and written to during program execution.
-- **Addressing:** RAM uses a 2D coordinate system `(x, y)` instead of a single linear address.
-    - `x` and `y` are each 2 bits, providing a 4x4 grid (16 total addresses).
+- **Addressing:** Uses single linear address.
+    - Addresses are 4 bits each, providing 16 total addresses.
+    - In practice, each address can be split into a y and an x component to make selecting easier, as long as the RAM is equal length on both sides.
 - **Data:** Each location in RAM stores 4 bits.
 
 ---
 
 ### 2. ROM (Read-Only Memory)
 - **Purpose:** Permanent storage for program instructions and data.
-- **Addressing:** ROM also uses a 2D coordinate system `(x, y)`.
+- **Addressing:** ROM uses the same memory address system as the RAM.
 - **Data:** ROM is read-only and cannot be written to during execution.
 
 ---
@@ -89,9 +90,9 @@ Stack After: [0010 (2), ...]
     - Leaves all values on the stack intact.
 
 ``` text title="Example"
-Stack Before: [0111 (7), 0101 (5), 10 (x=2) 11 (y=3), ...]
+Stack Before: [0111 (7), 0101 (5), 1011 (11), ...]
 Condition: 7 > 5 → True
-RAM Pointer: Moves to 10 (2), 11 (3)
+RAM Pointer: Moves to 1011 (11)
 ```
 
 ---
@@ -100,14 +101,11 @@ RAM Pointer: Moves to 10 (2), 11 (3)
 - **Opcode:** `1011`
 - **Behavior:**
     - Stack remains unchanged
-    - Splits the value into two 4-bit parts:
-        - First 4 bits → `x` coordinate.
-        - Second 4 bits → `y` coordinate.
-    - Moves the RAM pointer to `(x, y)`.
+    - Moves RAM pointer to first address in stack
 
 ```text title="Example"
-Stack Before: [01 (1) 11 (3), ...]
-RAM Pointer: Moves to (01, 11) → (1, 3)
+Stack Before: [0111 (7), ...]
+RAM Pointer: Moves to 0111 → 7
 ```
 
 ---
@@ -154,8 +152,8 @@ Stack After: [0111 (7), ...]
 
 ```text title="Example"
 Stack Before: [1001 (9), ...]
-RAM Pointer: (2, 3)
-RAM After: (2, 3) → 1001 (9)
+RAM Pointer: 11
+RAM After: 11 → 1001 (9)
 ```
 
 ---
@@ -173,27 +171,27 @@ RAM After: (2, 3) → 1001 (9)
 ---
 
 ## Example Program: Add Two Numbers
-This example program adds two numbers stored in RAM at locations `(0, 0)` and `(0, 1)` and stores the result at `(0, 2)`.
+This example program adds two numbers stored in RAM at locations `0` and `1` and stores the result at `2`.
 
 ### Steps:
-1. Move RAM pointer to `(0, 0)` and read the value.
-2. Move RAM pointer to `(0, 1)` and read the value.
+1. Move RAM pointer to `0` and read the value.
+2. Move RAM pointer to `1` and read the value.
 3. Perform **Add**.
-4. Move RAM pointer to `(0, 2)` and **Write** the result.
+4. Move RAM pointer to `2` and **Write** the result.
 
 ### Instructions:
 ```text title="Instructions"
-1011    ; Move RAM pointer to (0, 0)
-0000    ; Address: x=0, y=0
+1011    ; Move RAM pointer to 0
+0000    ; Address: 0
 1110    ; Read value into stack
 
-1011    ; Move RAM pointer to (0, 1)
-0001    ; Address: x=0, y=1
+1011    ; Move RAM pointer to 1
+0001    ; Address: 1
 1110    ; Read value into stack
 
 1000    ; Add the two values
 
-1011    ; Move RAM pointer to (0, 2)
-0010    ; Address: x=0, y=2
+1011    ; Move RAM pointer to 2
+0010    ; Address: 2
 1111    ; Write result to RAM
 ```
